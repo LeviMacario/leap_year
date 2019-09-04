@@ -1,3 +1,24 @@
-<html>
-    <h1>Bissexto</h1>
-</html>
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block content %}
+    {% csrf_token %}
+    <div class="text-center mb-4">
+        <img class="mb-4" src="{% static 'img/29_de_fevereiro.jpg' %}" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Anos bissextos</h1>
+        <p>
+            Olá! Tudo bem? ;) <br>
+            Informe abaixo o ano que deseja descobrir se é um ano bissexto.
+        </p>
+    </div>
+
+    <div class="form-label-group {% if form.year.errors %}has-error{% endif %}">
+        <input type="text" id="inputEmail" name="year" class="form-control" placeholder="Ano">
+        <label for="inputEmail">Ano</label>
+        {% if form.year.errors %}
+            {{ form.year.errors }}
+        {% endif %}
+    </div>
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Verificar</button>
+{% endblock %}
