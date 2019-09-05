@@ -30,3 +30,15 @@ class ResultViewTestCase(TestCase):
         self.assertEquals(response.context['status'], 'danger')
         self.assertTrue('msg' in response.context)
         self.assertEquals(response.context['msg'], 'O ano 2019 não é bissexto.')
+
+
+class IndexViewTestCase(TestCase):
+
+    def setUp(self):
+        self.url = '/'
+        self.client = Client()
+
+    def test_view_ok(self):
+        response = self.client.get(self.url)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'core/index.html')
